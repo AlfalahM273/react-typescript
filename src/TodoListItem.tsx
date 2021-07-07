@@ -26,13 +26,16 @@ export const TodoListItem: React.FC<Props> = ({ todo, toggleTodo, removeTodo, se
             </label>
         </td>
         <td>
-            <button
-                onClick={() => {
-                    selectTodo(todo);
-                }}
-            >
-                Edit
-            </button>
+            { !todo.complete &&
+                <button
+                    onClick={() => {
+                        selectTodo(todo);
+                    }}
+                >
+                    Edit
+                </button>
+            }
+            
             <button
                 onClick={() => {
                     removeTodo(todo);

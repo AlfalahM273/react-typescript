@@ -46,7 +46,6 @@ function App()  {
   }
 
   const selectTodo : SelectTodo = (selectedTodo: Todo) => {
-    console.log(selectedTodo.text);
     setSelectedTodo(selectedTodo as any);
   }
 
@@ -64,8 +63,25 @@ function App()  {
     setSelectedTodo(null as any);
   }
 
+  const markAllToDone = () => {
+    const newTodos = todos.map(todo => {
+      return {
+        ...todo,
+        complete: true,
+      };
+    });
+    setTodos(newTodos);
+  };
+
   return (
     <>
+      <button
+          onClick={() => {
+            markAllToDone();
+          }}
+      >
+          Mark All as Done
+      </button>
       <TodoList todos={todos} toggleTodo={toggleTodo} removeTodo={removeTodo} selectTodo={selectTodo} />
       {
         selectedTodo ? 
