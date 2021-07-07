@@ -46,6 +46,7 @@ function App()  {
   }
 
   const selectTodo : SelectTodo = (selectedTodo: Todo) => {
+    console.log(selectedTodo.text);
     setSelectedTodo(selectedTodo as any);
   }
 
@@ -63,29 +64,9 @@ function App()  {
     setSelectedTodo(null as any);
   }
 
-  const markAlltoDone = () => {
-    const newTodos = todos.map(todo => {
-        return {
-          ...todo,
-          complete: true,
-        };
-    });
-    setTodos(newTodos);
-  }
-
   return (
     <>
-      <button
-          type="submit"
-          onClick={e => {
-              e.preventDefault();
-              markAlltoDone();
-          }}
-      >
-          Mark All as Done
-      </button>
       <TodoList todos={todos} toggleTodo={toggleTodo} removeTodo={removeTodo} selectTodo={selectTodo} />
-      <br />
       {
         selectedTodo ? 
           <EditTodoForm editTodo={editTodo} todo={selectedTodo} />
